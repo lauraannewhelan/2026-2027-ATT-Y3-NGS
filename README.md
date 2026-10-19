@@ -228,7 +228,8 @@ With the sequenced reads of all samples mapped and post-processed, we can start 
 We will use **FreeBayes** to call variants. **FreeBayes** is a Bayesian genetic variant detector designed to find small polymorphisms, including SNPs (single-nucleotide polymorphisms), indels (insertions and deletions), MNPs (multi-nucleotide polymorphisms), and complex events (composite insertion and substitution events) smaller than the length of a short-read sequencing alignment.
 
 > **Hands-on: Generating FreeBayes calls**
-> 
+>
+> ** Ensure your RmDup outputs have their database set to hg19, NOT ?
 > 1. Run **FreeBayes** (Galaxy version 1.3.6+galaxy0):
 >     * _“Choose the source for the reference genome”_: `Locally cached`
 >         * _“Run in batch mode?”_: `Merge output VCFs`
