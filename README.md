@@ -351,11 +351,16 @@ The result will include a _Summary Stats_ HTML report and the annotated VCF file
 
 ---
 
-
-
 ## 🧬 Candidate Variant Detection – Developing a Filtering Strategy
 
-Let’s now search for variants that could explain the boy’s phenotype. Consider the following steps and questions:
+- You need to develop a filtering strategy. The idea here is to think about your patient's phenotype, the inheritance pattern, and characteristics of a pathogenic DNA change.
+- Pause for a moment and speak with the people around you as to what the best approach might be.
+- There is roughly 40,000 variants in your VCF. How do you narrow that down to one?
+
+### Use this website to explore your VCF and some filters: https://gataca.com/variants/
+- Download your VCF generated from FreeBayes by clicking on it to expand, then pressing the leftmost button (floppy disk/download).
+- Upload this to the website above
+- Explore your filtering strategy!
 
 ---
 
@@ -367,80 +372,6 @@ To begin, investigate which genes are associated with this condition.
 - Visit: [Gene2Phenotype – EBI](https://www.ebi.ac.uk/gene2phenotype/)
 - Look up osteopetrosis and identify the first gene that appears. 
 
-**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
-
-- **Input variant list in VCF format:** Output from **SnpEff eff**  
-- **Type of filter expression:** Simple expression  
-- **Filter criteria:**
-
-```bash
-(ANN[*].GENE = 'CA2')
-```
-
----
-
-### 👪 Step 2: Inheritance Pattern Filtering
-
-**The parents are consanguineous**  
-This suggests a likely **recessive inheritance pattern**. We want to filter for **homozygous variants in the proband** and **heterozygous in both parents**.
-
-**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
-
-- **Input variant list in VCF format:** Output from the previous **SnpSift Filter**  
-- **Type of filter expression:** Simple expression  
-- **Filter criteria:**
-
-```bash
-(
-  GEN[proband].GT = '1/1' &
-  GEN[mother].GT = '0/1' &
-  GEN[father].GT = '0/1'
-)
-
-
-```
-👨‍👩‍👦 The rule we're applying:
-
-The child (proband) must have two copies of the mutation — one from each parent. This is called homozygous for the mutation ('1/1').
-
-Each parent must have one normal copy and one mutated copy — they're carriers. This is called heterozygous ('0/1').
-
----
-
-### 🧪 Step 3: Prioritize Likely Pathogenic Variants
-
-After filtering, you should be left with **two candidate variants**.
-
-Ask yourself:
-
-- Which one is the more likely **disease-causing** variant?
-- Consider **variant type** (e.g., missense vs. nonsense).
-- Use additional filtering to prioritize:
-
-**Filter using `SnpSift Filter` (Galaxy version 4.3+t.galaxy1):**
-
-- **Input variant list in VCF format:** Output from previous step  
-- **Type of filter expression:** Simple expression  
-- **Filter criteria:**
-
-```bash
-(ANN[*].EFFECT has 'stop_gained')
-```
-
-
-# Conclusion
-
-It wasn’t difficult to find the most likely causative mutation for the child’s disease (you did find it, right?).
-
-While whole-exome sequencing of family trios may not always point to just one causative variant, it can often narrow down the search to a small, manageable set of candidate variants. These can then be further investigated through standard methods.
-
-> **Key points:**
-> 
-> - **Exome sequencing** is an efficient method for identifying disease-relevant genetic variants.
-> 
-> - **FreeBayes** is a reliable variant and genotype caller for the joint analysis of multiple samples. It is easy to use and requires minimal processing of mapped reads.
-> 
-> - **Variant annotation** and the ability to leverage genotype information across family members are key to identifying candidate disease variants. 
 
 ---
 
