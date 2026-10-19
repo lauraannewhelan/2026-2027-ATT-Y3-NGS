@@ -364,17 +364,6 @@ The result will include a _Summary Stats_ HTML report and the annotated VCF file
 
 ---
 
-### 🦴 Step 1: Phenotype-Based Filtering
-
-**The boy has osteopetrosis**  
-To begin, investigate which genes are associated with this condition.
-
-- Visit: [Gene2Phenotype – EBI](https://www.ebi.ac.uk/gene2phenotype/)
-- Look up osteopetrosis and identify the first gene that appears. 
-
-
----
-
 ### Resources used for this tutorial:
 
 1. Wolfgang Maier, Bérénice Batut, Torsten Houwaart, Anika Erxleben, Björn Grüning, **Exome sequencing data analysis for diagnosing a genetic disease (Galaxy Training Materials)**. [https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/exome-seq/tutorial.html](https://training.galaxyproject.org/training-material/topics/variant-analysis/tutorials/exome-seq/tutorial.html) Online; accessed TODAY.
